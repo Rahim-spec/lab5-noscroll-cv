@@ -1,29 +1,45 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const tabs = document.querySelectorAll('#tab-nav .tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
+document.addEventListener('DOMContentLoaded', () => {
 
-  tabs.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const target = this.getAttribute('data-target');
+    const navButtons = document.querySelectorAll('.nav-btn, .nav-logo');
+    const sections = document.querySelectorAll('.section-panel');
 
-      // Reset all tab button styles
-      tabs.forEach(function (b) {
-        b.classList.remove('active', 'text-white', 'bg-[#232732]', 'shadow-sm', 'border', 'border-[#33353a]');
-        b.classList.add('text-[#94A3B8]');
-      });
+    // Function to switch active section without scrolling
+    function switchSection(targetId) {
+        // Remove active class from all buttons and panels
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(panel => panel.classList.remove('active'));
 
-      // Apply active style to clicked button
-      this.classList.remove('text-[#94A3B8]');
-      this.classList.add('active', 'text-white', 'bg-[#232732]', 'shadow-sm', 'border', 'border-[#33353a]');
-
-      // Toggle visible panel dynamically in place
-      panels.forEach(function (p) {
-        if (p.id === target) {
-          p.classList.remove('hidden');
-        } else {
-          p.classList.add('hidden');
+        // Highlight matching navbar button
+        const matchingBtn = document.querySelector(`.nav-btn[data-section="${targetId}"]`);
+        if (matchingBtn) {
+            matchingBtn.classList.add('active');
         }
-      });
+
+        // Show matching target section
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+    }
+
+    // Add click event listener to each nav item
+    navButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSectionId = button.getAttribute('data-section');
+            if (targetSectionId) {
+                switchSection(targetSectionId);
+            }
+        });
     });
-  });
+
+    // Certificate button click feedback
+    const viewButtons = document.querySelectorAll('.btn-view');
+    viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const certName = button.getAttribute('data-cert');
+            alert(`Opening certificate preview for: ${certName}`);
+        });
+    });
+
 });
