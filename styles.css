@@ -9,10 +9,10 @@ html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden !important; /* Disables outer scrollbar */
+    overflow: hidden !important; /* Disables page scrollbars completely */
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #111318;
-    color: #E2E8F0;
+    background-color: #F8FAFC;
+    color: #334155;
     line-height: 1.6;
 }
 
@@ -26,58 +26,85 @@ html, body {
     box-sizing: border-box;
 }
 
+/* Header & Navigation */
 .header {
-    background-color: #1A1D24;
-    border: 1px solid #2A2E39;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
     border-radius: 12px;
     margin-bottom: 1rem;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .nav-container {
-    padding: 0.85rem 1.5rem;
+    padding: 0.75rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav-logo {
-    color: #FFFFFF;
-    font-size: 1.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #0F172A;
+    font-size: 1.1rem;
     font-weight: 700;
-    text-decoration: none;
     letter-spacing: 1px;
+}
+
+.nav-logo-icon {
+    font-size: 1.3rem;
+    color: #0284C7;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .nav-btn {
     background: transparent;
-    border: none;
-    color: #94A3B8;
-    font-size: 0.9rem;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #64748B;
+    font-size: 0.85rem;
     font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
+.nav-icon {
+    font-size: 1.1rem;
+    color: #94A3B8;
+    transition: color 0.2s ease;
+}
+
 .nav-btn:hover {
-    color: #FFFFFF;
-    background-color: #252932;
+    color: #0F172A;
+    background-color: #F1F5F9;
+}
+
+.nav-btn:hover .nav-icon,
+.nav-btn.active .nav-icon {
+    color: #0284C7;
 }
 
 .nav-btn.active {
-    color: #FFFFFF;
-    background-color: #252932;
-    border: 1px solid #333846;
+    color: #0284C7;
+    background-color: #F0F9FF;
+    border: 1px solid #BAE6FD;
 }
 
+/* Grid Stacking Stage */
 .content-area {
     flex: 1;
     display: grid;
@@ -88,7 +115,6 @@ html, body {
     overflow: hidden !important;
 }
 
-/* Force all section panels to occupy the exact same grid cell space */
 .section-panel {
     grid-column: 1;
     grid-row: 1;
@@ -108,26 +134,28 @@ html, body {
 }
 
 .card {
-    background-color: #1A1D24;
-    border: 1px solid #2A2E39;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
     border-radius: 12px;
     padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .section-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #FFFFFF;
+    color: #0F172A;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #2A2E39;
+    border-bottom: 1px solid #E2E8F0;
     padding-bottom: 0.5rem;
 }
 
 .section-desc {
-    color: #94A3B8;
+    color: #64748B;
     margin-bottom: 1.25rem;
 }
 
+/* Profile / Hero */
 .hero-card {
     display: flex;
     align-items: center;
@@ -139,19 +167,19 @@ html, body {
     height: 130px;
     border-radius: 12px;
     object-fit: cover;
-    border: 2px solid #2A2E39;
+    border: 2px solid #E2E8F0;
 }
 
 .user-name {
     font-size: 2rem;
     font-weight: 700;
-    color: #FFFFFF;
+    color: #0F172A;
     letter-spacing: 1px;
 }
 
 .user-title {
     font-size: 1rem;
-    color: #94A3B8;
+    color: #64748B;
     margin-bottom: 1rem;
 }
 
@@ -161,19 +189,20 @@ html, body {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem 1.5rem;
     font-size: 0.9rem;
-    color: #CBD5E1;
+    color: #475569;
 }
 
 .meta-label {
-    color: #64748B;
+    color: #94A3B8;
     font-weight: 600;
 }
 
+/* Timeline */
 .timeline {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    border-left: 2px solid #2A2E39;
+    border-left: 2px solid #E2E8F0;
     padding-left: 1.5rem;
     margin-left: 0.5rem;
 }
@@ -189,12 +218,12 @@ html, body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: #0284C7;
 }
 
 .timeline-content h3 {
     font-size: 1.05rem;
-    color: #FFFFFF;
+    color: #0F172A;
 }
 
 .timeline-content .institution {
@@ -205,9 +234,10 @@ html, body {
 
 .timeline-content .timeline-desc {
     font-size: 0.85rem;
-    color: #94A3B8;
+    color: #64748B;
 }
 
+/* Skills */
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -215,14 +245,15 @@ html, body {
 }
 
 .skill-badge {
-    background-color: #252932;
-    color: #E2E8F0;
+    background-color: #F1F5F9;
+    color: #334155;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-size: 0.85rem;
-    border: 1px solid #333846;
+    border: 1px solid #E2E8F0;
 }
 
+/* Hobbies */
 .hobbies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -230,8 +261,8 @@ html, body {
 }
 
 .hobby-card {
-    background-color: #252932;
-    border: 1px solid #333846;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 8px;
     padding: 1.25rem;
     display: flex;
@@ -246,9 +277,10 @@ html, body {
 
 .hobby-label {
     font-size: 0.85rem;
-    color: #CBD5E1;
+    color: #475569;
 }
 
+/* Certificates */
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -256,8 +288,8 @@ html, body {
 }
 
 .cert-card {
-    background-color: #252932;
-    border: 1px solid #333846;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -281,30 +313,30 @@ html, body {
 
 .cert-body h3 {
     font-size: 0.85rem;
-    color: #FFFFFF;
+    color: #0F172A;
 }
 
 .btn-view {
     cursor: pointer;
     text-align: center;
     padding: 0.4rem;
-    background-color: transparent;
-    border: 1px solid #475569;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    color: #0F172A;
     border-radius: 6px;
     font-size: 0.8rem;
     transition: all 0.2s ease;
 }
 
 .btn-view:hover {
-    background-color: #FFFFFF;
-    color: #111318;
+    background-color: #0F172A;
+    color: #FFFFFF;
 }
 
 .footer {
     text-align: center;
     padding-top: 0.5rem;
-    color: #64748B;
+    color: #94A3B8;
     font-size: 0.8rem;
     flex-shrink: 0;
 }
