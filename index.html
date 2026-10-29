@@ -1,167 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahim Nawaz| Interactive Single-View CV</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Rahim Nawaz| CV</title>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      "darkMode": "class",
+      "theme": {
+        "extend": {
+          "colors": {
+            "on-background": "#e2e2e9",
+            "surface-container": "#1e2025",
+            "primary": "#8ed5ff",
+            "outline": "#87929a",
+            "surface": "#111318",
+            "background": "#111318",
+            "secondary": "#45dfa4"
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container h-screen max-h-screen w-screen overflow-hidden m-0 p-0">
+  
+  <div class="flex flex-col h-screen max-h-screen w-full overflow-hidden justify-between p-3 md:p-5 box-border bg-[#111318] text-on-surface select-none">
+    
+    <!-- HEADER & NAVIGATION -->
+    <header class="w-full flex items-center justify-between shrink-0 bg-[#1A1D24]/90 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-lg border border-[#232732]">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-[#232732] flex items-center justify-center text-primary font-mono text-xs font-bold tracking-wider">AM</div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-sm tracking-tight text-white">RAHIM NAWAZ</span>
+            <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              <span class="text-[10px] text-secondary font-mono tracking-wider uppercase font-semibold">Available</span>
+            </span>
+          </div>
+        </div>
+      </div>
 
-    <!-- Main Wrapper constrained to viewport -->
-    <div class="app-wrapper">
+      <nav class="flex items-center gap-1 bg-[#111318]/80 p-1 rounded-lg border border-[#232732]/60" id="tab-nav">
+        <button class="tab-btn active px-3 py-1.5 rounded-md text-xs font-medium transition-all text-white bg-[#232732] shadow-sm border border-[#33353a]" data-target="panel-profile">Profile</button>
+        <button class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition-all text-[#94A3B8] hover:text-white hover:bg-[#232732]/50" data-target="panel-education">Education</button>
+        <button class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition-all text-[#94A3B8] hover:text-white hover:bg-[#232732]/50" data-target="panel-skills">Skills</button>
+        <button class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition-all text-[#94A3B8] hover:text-white hover:bg-[#232732]/50" data-target="panel-hobbies">Hobbies</button>
+        <button class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition-all text-[#94A3B8] hover:text-white hover:bg-[#232732]/50" data-target="panel-credentials">Certificates</button>
+      </nav>
 
-        <!-- Navigation Bar -->
-        <header class="header">
-            <nav class="nav-container">
-                <a href="#" class="nav-logo" data-section="profile">AM</a>
-                <ul class="nav-links">
-                    <li><button type="button" class="nav-btn active" data-section="profile">Profile</button></li>
-                    <li><button type="button" class="nav-btn" data-section="education">Education</button></li>
-                    <li><button type="button" class="nav-btn" data-section="skills">Skills</button></li>
-                    <li><button type="button" class="nav-btn" data-section="hobbies">Hobbies</button></li>
-                    <li><button type="button" class="nav-btn" data-section="certificates">Certificates</button></li>
-                </ul>
-            </nav>
-        </header>
+      <div class="flex items-center gap-2">
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-[#111318] hover:bg-slate-200 transition-colors text-xs font-semibold tracking-wider uppercase shadow-sm" href="#resume">
+          <span class="material-symbols-outlined text-[15px]">download</span>
+          <span class="hidden sm:inline">CV</span>
+        </a>
+      </div>
+    </header>
 
-        <!-- Dynamic Content Display Area -->
-        <main class="content-area">
-
-            <!-- 1. PERSONAL PROFILE SECTION (Active by Default) -->
-            <section id="profile" class="section-panel active">
-                <div class="card hero-card">
-                    <div class="hero-avatar">
-                        <img src="hero5.jpg" alt="Rahim Nawaz Profile Photo">
-                    </div>
-                    <div class="hero-info">
-                        <h1 class="user-name">RAHIM NAWAZ</h1>
-                        <p class="user-title">DATA ANALYST / Designer</p>
-
-                        <ul class="meta-list">
-                            <li><span class="meta-label">Age:</span> 20</li>
-                            <li><span class="meta-label">Phone:</span> +92 33269 234 24</li>
-                            <li><span class="meta-label">Email:</span>rahimnawazr1030@gmail.com</li>
-                            <li><span class="meta-label">Location:</span> Lahore, Pakistan</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 2. EDUCATION SECTION -->
-            <section id="education" class="section-panel">
-                <div class="card">
-                    <h2 class="section-title">About & Education</h2>
-                    <p class="section-desc">
-                        Passionate Data enthusiast while working in design too creating simple and fun helpful solutions.
-                    </p>
-
-                    <div class="timeline">
-                        <article class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <h3>B.Sc. in Computer Science</h3>
-                                <p class="institution">Qarshi University • 2024 - Current</p>
-                                <p class="timeline-desc">Undergraduate specializing in Data and Design.</p>
-                            </div>
-                        </article>
-
-                    
-
-            <!-- 3. SKILLS SECTION -->
-        <section id="skills" class="card">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <span class="skill-badge">Researching</span>
-                <span class="skill-badge"><HTML></HTML></span>
-                <span class="skill-badge">Project management</span>
-                <span class="skill-badge">CSS</span>
-                <span class="skill-badge">Writing</span>
-                <span class="skill-badge">Reading</span>
-                <span class="skill-badge">Article Writing</span>
-                <span class="skill-badge">Blog Writing</span>
-            </div>
-        </section>
-
-            <!-- 4. HOBBIES SECTION -->
-            <section id="hobbies" class="section-panel">
-                <div class="card">
-                    <h2 class="section-title">Hobbies</h2>
-                    <div class="hobbies-grid">
-                        <div class="hobby-card">
-                            <span class="hobby-icon">📷</span>
-                            <span class="hobby-label">Photography</span>
-                        </div>
-                        <div class="hobby-card">
-                            <span class="hobby-icon">✈️</span>
-                            <span class="hobby-label">Travel</span>
-                        </div>
-                        <div class="hobby-card">
-                            <span class="hobby-icon">♟️</span>
-                            <span class="hobby-label">Chess</span>
-                        </div>
-                        <div class="hobby-card">
-                            <span class="hobby-icon">📚</span>
-                            <span class="hobby-label">Reading</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. CERTIFICATES SECTION -->
-            <section id="certificates" class="section-panel">
-                <div class="card">
-                    <h2 class="section-title">Certificates</h2>
-                    <div class="certificates-grid">
-                        
-                        <article class="cert-card">
-                            <div class="cert-image-wrapper">
-                                <img src="AI eesentials.jpg" alt="Google UX Design Certificate">
-                            </div>
-                            <div class="cert-body">
-                                <h3>Google AI Essentials</h3>
-                                <button type="button" class="btn-view" data-cert="Google UX Design">View Certificate</button>
-                            </div>
-                        </article>
-
-                        <article class="cert-card">
-                            <div class="cert-image-wrapper">
-                                <img src="Introduction AI.jpg" alt="AWS Certified Cloud Practitioner">
-                            </div>
-                            <div class="cert-body">
-                                <h3>Introduction To AI</h3>
-                                <button type="button" class="btn-view" data-cert="AWS Cloud Practitioner">View Certificate</button>
-                            </div>
-                        </article>
-
-                        <article class="cert-card">
-                            <div class="cert-image-wrapper">
-                                <img src="Productivity with ai.jpg" alt="Meta Front-End Developer">
-                            </div>
-                            <div class="cert-body">
-                                <h3>Productivity With AI Tools</h3>
-                                <button type="button" class="btn-view" data-cert="Meta Front-End Developer">View Certificate</button>
-                            </div>
-                        </article>
-
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="footer">
-            <p>&copy; 2026 Rahim Nawaz. All rights reserved.</p>
-        </footer>
-
-    </div>
-
-    <!-- Main JavaScript File -->
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- MAIN DYNAMIC CONTENT AREA -->
+    <main class="flex-1 min-h-0 w-full flex items-center justify-center p-2 relative overflow-hidden">
+      
+      <!-- 1. PROFILE SECTION -->
+      <section class="tab-panel w-full max-w-4xl bg-[#1A1D24] border border-[#232732] rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300" id="panel-profile">
+        <div class="absolute -top-32 -right-32 w-72 h-72 rounded-full bg-

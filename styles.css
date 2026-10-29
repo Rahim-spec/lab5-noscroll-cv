@@ -1,5 +1,5 @@
 /* ==========================================
-   RESET & BASE STYLES (No Page Scroll)
+   RESET & BASE STYLES (Zero Page Scroll)
    ========================================== */
 * {
     margin: 0;
@@ -9,15 +9,17 @@
 
 html, body {
     width: 100%;
-    height: 100%;
-    overflow: hidden; /* Disables entire page scrollbar */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important; /* Strictly prevents outer scrollbars */
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: #111318;
     color: #E2E8F0;
     line-height: 1.6;
 }
 
-/* Screen Wrapper to center everything nicely */
+/* Screen Wrapper to center everything nicely within viewport */
 .app-wrapper {
     display: flex;
     flex-direction: column;
@@ -25,6 +27,7 @@ html, body {
     max-width: 900px;
     margin: 0 auto;
     padding: 1.5rem;
+    box-sizing: border-box;
 }
 
 /* ==========================================
@@ -34,7 +37,8 @@ html, body {
     background-color: #1A1D24;
     border: 1px solid #2A2E39;
     border-radius: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .nav-container {
@@ -82,51 +86,57 @@ html, body {
 }
 
 /* ==========================================
-   DYNAMIC CONTENT AREA
+   DYNAMIC CONTENT AREA (Grid Stacking)
    ========================================== */
 .content-area {
     flex: 1;
-    position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     align-items: center;
     justify-content: center;
+    overflow: hidden !important;
 }
 
-/* Hide panels by default */
+/* Force all section panels to occupy the exact same grid cell space */
 .section-panel {
-    display: none;
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
+    visibility: hidden;
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0.98);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, visibility 0.25s;
+    pointer-events: none;
 }
 
 /* Active section styling */
 .section-panel.active {
-    display: block;
+    visibility: visible;
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 .card {
     background-color: #1A1D24;
     border: 1px solid #2A2E39;
     border-radius: 12px;
-    padding: 2.5rem;
+    padding: 2rem;
 }
 
 .section-title {
     font-size: 1.5rem;
     font-weight: 700;
     color: #FFFFFF;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid #2A2E39;
-    padding-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
 }
 
 .section-desc {
     color: #94A3B8;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 /* ==========================================
@@ -135,28 +145,28 @@ html, body {
 .hero-card {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .hero-avatar img {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 12px;
     object-fit: cover;
     border: 2px solid #2A2E39;
 }
 
 .user-name {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #FFFFFF;
     letter-spacing: 1px;
 }
 
 .user-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #94A3B8;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .meta-list {
@@ -179,7 +189,7 @@ html, body {
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
     border-left: 2px solid #2A2E39;
     padding-left: 1.5rem;
     margin-left: 0.5rem;
@@ -200,18 +210,18 @@ html, body {
 }
 
 .timeline-content h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #FFFFFF;
 }
 
 .timeline-content .institution {
     font-size: 0.85rem;
     color: #64748B;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 
 .timeline-content .timeline-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #94A3B8;
 }
 
@@ -227,15 +237,10 @@ html, body {
 .skill-badge {
     background-color: #252932;
     color: #E2E8F0;
-    padding: 0.6rem 1.25rem;
+    padding: 0.5rem 1rem;
     border-radius: 9999px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     border: 1px solid #333846;
-    transition: background-color 0.2s ease;
-}
-
-.skill-badge:hover {
-    background-color: #333846;
 }
 
 /* ==========================================
@@ -243,7 +248,7 @@ html, body {
    ========================================== */
 .hobbies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 1rem;
 }
 
@@ -251,7 +256,7 @@ html, body {
     background-color: #252932;
     border: 1px solid #333846;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -259,11 +264,11 @@ html, body {
 }
 
 .hobby-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 .hobby-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #CBD5E1;
 }
 
@@ -272,8 +277,8 @@ html, body {
    ========================================== */
 .certificates-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
 }
 
 .cert-card {
@@ -287,33 +292,33 @@ html, body {
 
 .cert-image-wrapper img {
     width: 100%;
-    height: 110px;
+    height: 95px;
     object-fit: cover;
 }
 
 .cert-body {
-    padding: 1rem;
+    padding: 0.85rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     flex-grow: 1;
     justify-content: space-between;
 }
 
 .cert-body h3 {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #FFFFFF;
 }
 
 .btn-view {
     cursor: pointer;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     background-color: transparent;
     border: 1px solid #475569;
     color: #FFFFFF;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: all 0.2s ease;
 }
 
@@ -327,9 +332,10 @@ html, body {
    ========================================== */
 .footer {
     text-align: center;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     color: #64748B;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    flex-shrink: 0;
 }
 
 /* ==========================================
@@ -337,16 +343,23 @@ html, body {
    ========================================== */
 @media (max-width: 640px) {
     html, body {
-        overflow: auto; /* Fallback scroll for mobile screens */
+        overflow: hidden !important;
     }
 
     .app-wrapper {
-        height: auto;
+        height: 100vh;
+        padding: 0.75rem;
     }
 
     .hero-card {
         flex-direction: column;
         text-align: center;
+        padding: 1.5rem;
+    }
+
+    .hero-avatar img {
+        width: 100px;
+        height: 100px;
     }
 
     .meta-list {
@@ -358,7 +371,7 @@ html, body {
     }
 
     .nav-btn {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.75rem;
     }
 }
