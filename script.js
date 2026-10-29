@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navButtons = document.querySelectorAll('.nav-btn, .nav-logo');
     const sections = document.querySelectorAll('.section-panel');
 
-    // Function to switch active section without scrolling
+    // Function to switch active section in place
     function switchSection(targetId) {
         // Remove active class from all buttons and panels
         navButtons.forEach(btn => btn.classList.remove('active'));
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             matchingBtn.classList.add('active');
         }
 
-        // Show matching target section
+        // Show matching target section card
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
             targetSection.classList.add('active');
